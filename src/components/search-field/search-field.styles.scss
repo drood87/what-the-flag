@@ -1,0 +1,33 @@
+.search-box {
+  position: relative;
+  padding: 0 50px;
+  margin-top: 50px;
+  height: 50px;
+  display: flex;
+
+  align-items: center;
+
+  &__icon {
+    position: absolute;
+    margin-left: 40px;
+  }
+
+  &__input {
+    width: 50%;
+    height: 100%;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background-color: hsl(209, 23%, 22%);
+    padding-left: 90px;
+    color: #fff;
+    font-weight: 600;
+    font-family: 'Nunito Sans', sans-serif;
+
+    &::placeholder {
+      font-family: 'Nunito Sans', sans-serif;
+      color: #fff;
+      font-weight: 600;
+    }
+  }
+}

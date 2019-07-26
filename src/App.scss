@@ -1,0 +1,12 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: hsl(207, 26%, 17%);
+  color: hsl(0, 0%, 100%);
+  word-spacing: 1.2px;
+}

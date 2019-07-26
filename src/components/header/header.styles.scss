@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: hsl(209, 23%, 22%);
+  padding: 0px 50px;
+  box-shadow: 0 2px 30px #000;
+
+  &__title {
+    font-weight: 800;
+    font-size: 28px;
+  }
+
+  &__btn {
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    color: inherit;
+    outline: none;
+    border: none;
+    background-color: transparent;
+  }
+
+  &__switch {
+    padding-left: 10px;
+  }
+}
