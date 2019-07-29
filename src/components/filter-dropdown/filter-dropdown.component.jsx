@@ -18,11 +18,24 @@ class FilterDropdown extends Component {
     });
   };
 
+  handleKeyDown = e => {
+    e.preventDefault();
+    if (e.keyCode === 32) {
+      this.handleToggle();
+    }
+  };
+
   render() {
     const { isHidden } = this.state;
     return (
       <div className="filter-box" style={{ marginTop: '5rem' }}>
-        <div className="filter-box__input" onClick={this.handleToggle}>
+        <div
+          tabIndex="0"
+          role="button"
+          className="filter-box__input"
+          onClick={this.handleToggle}
+          onKeyDown={this.handleKeyDown}
+        >
           <span>Filter by Region</span>
           <FontAwesomeIcon icon={faChevronCircleDown} />
         </div>

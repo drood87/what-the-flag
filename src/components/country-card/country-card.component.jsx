@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import './country-card.styles.scss';
 
 const CountryCard = ({ name, population, flag, capital, region }) => (
@@ -24,5 +24,13 @@ const CountryCard = ({ name, population, flag, capital, region }) => (
     </div>
   </div>
 );
+
+CountryCard.propTypes = {
+  name: PropTypes.string,
+  population: PropTypes.number,
+  flag: PropTypes.string,
+  capital: PropTypes.string,
+  region: PropTypes.string,
+};
 
 export default CountryCard;
