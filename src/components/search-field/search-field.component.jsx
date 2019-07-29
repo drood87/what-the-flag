@@ -15,7 +15,6 @@ class SearchField extends Component {
         <input
           type="search"
           name="Search"
-          id="search"
           placeholder={placeholder}
           className="search-box__input"
         />

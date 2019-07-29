@@ -1,0 +1,31 @@
+.country-card {
+  width: 100%;
+  background-color: hsl(209, 23%, 22%);
+  border-radius: 5px;
+  overflow: hidden;
+
+  &__image-box {
+  }
+
+  &__image {
+    width: 100%;
+  }
+
+  &__content {
+    padding: 2rem;
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    margin-top: 0;
+  }
+
+  &__detail {
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    &--info {
+      font-weight: 300;
+    }
+  }
+}

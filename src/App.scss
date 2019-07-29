@@ -1,12 +1,42 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  box-sizing: inherit;
+}
+
+html {
+  // defines what 1 rem is = 10px
+  font-size: 62.5%;
 }
 
 body {
   font-family: 'Nunito Sans', sans-serif;
   background-color: hsl(207, 26%, 17%);
   color: hsl(0, 0%, 100%);
-  word-spacing: 1.2px;
+  word-spacing: 1.5px;
+  box-sizing: border-box;
+}
+
+.filter-search {
+  padding: 0 10rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.main-content {
+  display: grid;
+  margin-top: 3rem;
+  // display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  justify-content: space-between;
+  grid-gap: 2rem;
+  padding: 0 10rem;
+
+  // &::after {
+  //   content: '';
+  //   width: 100%;
+  // }
 }
