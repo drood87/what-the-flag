@@ -12,6 +12,7 @@ import './App.scss';
 class App extends React.Component {
   state = {
     countries: [],
+    searchField: '',
   };
 
   async componentDidMount() {
@@ -23,18 +24,28 @@ class App extends React.Component {
     });
   }
 
+  handleChange = e => {
+    this.setState({ searchField: e.target.value });
+  };
+
   render() {
-    const { countries } = this.state;
-    console.log(countries);
+    const { countries, searchField } = this.state;
+    const filterCountries = countries.filter(country =>
+      country.name.toLowerCase().includes(searchField.toLowerCase())
+    );
+    console.log(filterCountries);
     return (
       <div className="inner-container">
         <Header />
         <div className="filter-search">
-          <SearchField placeholder="Search for a country..." />
+          <SearchField
+            placeholder="Search for a country..."
+            handleChange={this.handleChange}
+          />
           <FilterDropdown />
         </div>
         <main className="main-content">
-          {countries.map(country => (
+          {filterCountries.map(country => (
             <CountryCard
               name={country.name}
               key={country.name}
@@ -51,3 +62,4 @@ class App extends React.Component {
 }
 
 export default App;
+

@@ -8,11 +8,12 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 class SearchField extends Component {
   render() {
-    const { placeholder } = this.props;
+    const { placeholder, handleChange } = this.props;
     return (
       <div className="search-box">
         <FontAwesomeIcon icon={faSearch} className="search-box__icon" />
         <input
+          onChange={handleChange}
           type="search"
           name="Search"
           placeholder={placeholder}
@@ -24,6 +25,7 @@ class SearchField extends Component {
 }
 
 SearchField.propTypes = {
+  handleChange: PropsTypes.any,
   placeholder: PropsTypes.string,
 };
 
