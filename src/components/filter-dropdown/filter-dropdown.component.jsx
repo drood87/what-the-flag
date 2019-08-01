@@ -27,6 +27,7 @@ class FilterDropdown extends Component {
 
   render() {
     const { isHidden } = this.state;
+    const { handleDropdown } = this.props;
     return (
       <div className="filter-box" style={{ marginTop: '5rem' }}>
         <div
@@ -39,7 +40,7 @@ class FilterDropdown extends Component {
           <span>Filter by Region</span>
           <FontAwesomeIcon icon={faChevronCircleDown} />
         </div>
-        {isHidden ? null : <Dropdown />}
+        {isHidden ? null : <Dropdown handleDropdown={handleDropdown} />}
       </div>
     );
   }

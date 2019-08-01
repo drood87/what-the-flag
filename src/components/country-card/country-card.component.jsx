@@ -1,9 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import './country-card.styles.scss';
 
-const CountryCard = ({ name, population, flag, capital, region }) => (
-  <div className="country-card">
+const CountryCard = ({
+  name,
+  population,
+  flag,
+  capital,
+  region,
+  match,
+  history,
+  linkUrl,
+  ...otherDetails
+}) => (
+  <div
+    className="country-card"
+    onClick={() => history.push(`${match.url}${linkUrl}`, { ...otherDetails })}
+  >
     <div className="country-card__image-box">
       <img src={flag} alt={`${name} Flag`} className="country-card__image" />
     </div>
@@ -12,7 +26,9 @@ const CountryCard = ({ name, population, flag, capital, region }) => (
       <div className="country-card__details">
         <p className="country-card__detail">
           Population:{' '}
-          <span className="country-card__detail--info">{population}</span>
+          <span className="country-card__detail--info">
+            {population.toLocaleString()}
+          </span>
         </p>
         <p className="country-card__detail">
           Region: <span className="country-card__detail--info">{region}</span>
@@ -31,6 +47,10 @@ CountryCard.propTypes = {
   flag: PropTypes.string,
   capital: PropTypes.string,
   region: PropTypes.string,
-};
+  match: PropTypes.object,
+  history: PropTypes.object,
+  linkUrl: PropTypes.string,
+}.isRequired;
 
-export default CountryCard;
+// @ts-ignore
+export default withRouter(CountryCard);
