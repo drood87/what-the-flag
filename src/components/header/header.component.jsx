@@ -11,7 +11,7 @@ class Header extends React.Component {
     return (
       <div className="header">
         <h1 className="header__title">What the Flag?</h1>
-        <CustomButton type="button" className="header__btn">
+        <CustomButton type="button" isDarkMode isCardDetails={false}>
           <FontAwesomeIcon icon={faMoon} />
           <span className="header__switch">Dark Mode</span>
         </CustomButton>
