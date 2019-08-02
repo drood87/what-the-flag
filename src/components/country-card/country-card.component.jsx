@@ -3,38 +3,38 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import './country-card.styles.scss';
 
-const CountryCard = ({
-  name,
-  population,
-  flag,
-  capital,
-  region,
-  match,
-  history,
-  linkUrl,
-  ...otherDetails
-}) => (
+const CountryCard = ({ match, history, linkUrl, ...country }) => (
   <div
     className="country-card"
-    onClick={() => history.push(`${match.url}${linkUrl}`, { ...otherDetails })}
+    onClick={() =>
+      history.push(`${match.url}${linkUrl}`, {
+        ...country,
+      })
+    }
   >
     <div className="country-card__image-box">
-      <img src={flag} alt={`${name} Flag`} className="country-card__image" />
+      <img
+        src={country.flag}
+        alt={`${country.name} Flag`}
+        className="country-card__image"
+      />
     </div>
     <div className="country-card__content">
-      <h3 className="country-card__title">{name}</h3>
+      <h3 className="country-card__title">{country.name}</h3>
       <div className="country-card__details">
         <p className="country-card__detail">
           Population:{' '}
           <span className="country-card__detail--info">
-            {population.toLocaleString()}
+            {country.population.toLocaleString()}
           </span>
         </p>
         <p className="country-card__detail">
-          Region: <span className="country-card__detail--info">{region}</span>
+          Region:{' '}
+          <span className="country-card__detail--info">{country.region}</span>
         </p>
         <p className="country-card__detail">
-          Capital: <span className="country-card__detail--info">{capital}</span>
+          Capital:{' '}
+          <span className="country-card__detail--info">{country.capital}</span>
         </p>
       </div>
     </div>

@@ -1,3 +1,38 @@
 .country-details {
   padding: 5rem 10rem;
+
+  &__back {
+    margin-left: 8px;
+  }
+
+  &__body {
+    margin-top: 7rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &__flag {
+    width: 50%;
+
+    img {
+      width: 80%;
+      height: auto;
+    }
+  }
+
+  &__information {
+    margin-left: 6rem;
+    width: 50%;
+
+    .title {
+      font-size: 3rem;
+      letter-spacing: 1px;
+    }
+  }
+
+  &__main {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+  }
 }
