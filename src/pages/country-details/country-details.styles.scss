@@ -35,4 +35,29 @@
     width: 80%;
     justify-content: space-between;
   }
+
+  &__borders {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
+
+    p {
+      margin: 0;
+      min-width: 30%;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+  }
+
+  &__button-wrapper {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+
+    button {
+      font-size: 1rem;
+      margin: 1rem 0 1rem 1rem;
+    }
+  }
 }

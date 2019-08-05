@@ -9,6 +9,7 @@ import './homepage.styles.scss';
 class HomePage extends Component {
   state = {
     countries: [],
+    fullBorderNames: {},
     searchField: '',
   };
 
@@ -16,8 +17,16 @@ class HomePage extends Component {
     const res = await fetch('https://restcountries.eu/rest/v2/all');
     const countries = await res.json();
 
+    // create object that holds name and alpha3Code of countries
+
+    const countriesCodeName = countries.map(country => ({
+      name: country.name,
+      code: country.alpha3Code,
+    }));
+
     this.setState({
       countries,
+      countriesCodeName,
     });
   }
 
@@ -30,7 +39,7 @@ class HomePage extends Component {
   };
 
   render() {
-    const { countries, searchField } = this.state;
+    const { countries, searchField, countriesCodeName } = this.state;
     const filterCountries = countries.filter(country =>
       country.name.toLowerCase().includes(searchField.toLowerCase())
     );
@@ -49,6 +58,7 @@ class HomePage extends Component {
               key={country.name}
               linkUrl={`country/${country.name}`}
               {...country}
+              borderNamesCode={countriesCodeName}
             />
           ))}
         </main>

@@ -3,11 +3,18 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import './country-card.styles.scss';
 
-const CountryCard = ({ match, history, linkUrl, ...country }) => (
+const CountryCard = ({
+  match,
+  history,
+  linkUrl,
+  borderNamesCode,
+  ...country
+}) => (
   <div
     className="country-card"
     onClick={() =>
       history.push(`${match.url}${linkUrl}`, {
+        borderNamesCode,
         ...country,
       })
     }
