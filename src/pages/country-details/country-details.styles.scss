@@ -52,8 +52,8 @@
 
   &__button-wrapper {
     width: 80%;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
 
     button {
       font-size: 1rem;
