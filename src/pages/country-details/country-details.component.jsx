@@ -13,22 +13,19 @@ import './country-details.styles.scss';
 class CountryDetails extends Component {
   state = {
     countryNames: [],
+    country: [],
   };
 
   componentDidMount() {
     const {
       location: {
-        state: { borderNamesCode },
+        state: { borderNamesCode, borders },
       },
     } = this.props;
 
-    const {
-      location: {
-        state: { borders },
-      },
-    } = this.props;
-
-    // create new array that checks alpha codes against country names and then spits out full names instead of the alpha3code
+    /* ----------------------------------------------------------------------------*/
+    // create new array that checks alpha codes against country names and then spits // out full names instead of the alpha3code
+    /* ----------------------------------------------------------------------------*/
 
     const fullBorderNames = (function codeToName() {
       const names = borders.map(borderCountry =>
@@ -39,17 +36,52 @@ class CountryDetails extends Component {
       return names.flat();
     })();
 
+    /* ------------------------------------------*/
+    // retrieve countries object from local storage
+    // !!!!dunno how to use that yet!!!!
+    /* ------------------------------------------*/
+
+    const countries = localStorage.getItem('countries');
+
+    /* ----------------------------------------------------------*/
+    // filter out countries which are not a border to that country
+    /* ----------------------------------------------------------*/
+
+    const filterCountries = (function filter() {
+      const retrieveCountries = JSON.parse(countries);
+
+      const filterBorders = borders.map(borderCountry =>
+        retrieveCountries
+          .filter(country => country.alpha3Code === borderCountry)
+          .map(countryObj => countryObj)
+      );
+
+      return filterBorders.flat();
+    })();
+
+    const {
+      location: { state },
+    } = this.props;
+
     this.setState({
       countryNames: fullBorderNames,
+      country: filterCountries,
+      details: state,
     });
   }
+
+  // change state based on button click and replace with details of that country
+
+  handleBorder = event => {
+    console.log(event.target);
+  };
 
   render() {
     const {
       location: { state },
     } = this.props;
 
-    const { countryNames } = this.state;
+    const { countryNames, country } = this.state;
 
     return (
       <div className="country-details">
@@ -107,7 +139,12 @@ class CountryDetails extends Component {
               <p>Border Countries:</p>
               <div className="country-details__button-wrapper">
                 {countryNames.map(border => (
-                  <CustomButton isCardDetails isDarkMode={false}>
+                  <CustomButton
+                    key={border}
+                    onClick={this.handleBorder}
+                    isCardDetails
+                    isDarkMode={false}
+                  >
                     {border}
                   </CustomButton>
                 ))}

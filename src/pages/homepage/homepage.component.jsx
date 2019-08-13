@@ -9,25 +9,57 @@ import './homepage.styles.scss';
 class HomePage extends Component {
   state = {
     countries: [],
-    fullBorderNames: {},
+    countriesCodeName: {},
     searchField: '',
   };
 
   async componentDidMount() {
-    const res = await fetch('https://restcountries.eu/rest/v2/all');
-    const countries = await res.json();
+    const apiReq = 'https://restcountries.eu/rest/v2/all';
 
-    // create object that holds name and alpha3Code of countries
+    if (localStorage.countries === undefined) {
+      console.log('Not in local Storage yet');
 
-    const countriesCodeName = countries.map(country => ({
-      name: country.name,
-      code: country.alpha3Code,
-    }));
+      const res = await fetch(apiReq);
+      const countries = await res.json();
 
-    this.setState({
-      countries,
-      countriesCodeName,
-    });
+      const CreateCountriesObj = function CountryCodesAndNames(name, code) {
+        this.name = name;
+        this.code = code;
+      };
+
+      /* ------------------------------------------*/
+      // create object that holds name and alpha3Code of countries
+      /* ------------------------------------------*/
+
+      const countriesCodeName = countries.map(country => {
+        const name = new CreateCountriesObj(country.name, country.alpha3Code);
+
+        return name;
+      });
+
+      // const countriesCodeName = countries.map(country => ({
+      //   name: country.name,
+      //   code: country.alpha3Code,
+      // }));
+
+      this.setState({
+        countries,
+        countriesCodeName,
+      });
+
+      localStorage.setItem('countries', JSON.stringify(countries));
+      localStorage.setItem('alphaCodes', JSON.stringify(countriesCodeName));
+    } else {
+      console.log('In local storage');
+
+      const retrieveCountries = localStorage.getItem('countries');
+      const retrieveCodes = localStorage.getItem('alphaCodes');
+
+      this.setState({
+        countries: JSON.parse(retrieveCountries),
+        countriesCodeName: JSON.parse(retrieveCodes),
+      });
+    }
   }
 
   handleChange = e => {
@@ -43,6 +75,7 @@ class HomePage extends Component {
     const filterCountries = countries.filter(country =>
       country.name.toLowerCase().includes(searchField.toLowerCase())
     );
+
     return (
       <div>
         <div className="filter-search">
