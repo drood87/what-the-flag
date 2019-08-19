@@ -96,7 +96,6 @@ class CountryDetails extends Component {
         borderNamesCode
           .filter(borderName => borderName.code === borderCountry)
           .map(countryObj => countryObj.name)
-          .flat()
       );
       return names.flat();
     })();
@@ -118,7 +117,7 @@ class CountryDetails extends Component {
       return filterBorders.flat();
     })();
 
-    // update state with new country --> still need to update the borders with function from componentDidMount
+    // update state with new country
 
     this.setState(prevState => ({
       details: borderCountryClicked,
@@ -186,16 +185,14 @@ class CountryDetails extends Component {
               <p>Border Countries:</p>
               <div className="country-details__button-wrapper">
                 {countryNamesFromBorders.map(border => (
-                  <Link to={`${border}`}>
-                    <CustomButton
-                      onClick={() => this.handleBorder(border)}
-                      key={border}
-                      isCardDetails
-                      isDarkMode={false}
-                    >
-                      {border}
-                    </CustomButton>
-                  </Link>
+                  <CustomButton
+                    onClick={() => this.handleBorder(border)}
+                    key={border}
+                    isCardDetails
+                    isDarkMode={false}
+                  >
+                    {border}
+                  </CustomButton>
                 ))}
               </div>
             </div>
